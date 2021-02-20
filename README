@@ -1,0 +1,28 @@
+Examples:
+
+1. Get the population variable ('H010001' and rename it to 'pop') for every ZCTA
+   in California (06), add it to the 2010 ZCTA-level TIGER shapefile for CA,
+   and output it to 'pop_shp/zcta2010.shp'.
+python3 census.py \
+    --vars H010001:pop \
+    --geo state:06,'zip code tabulation area (or part)' \
+    --tiger ./data/census/tl_2010_06_zcta510.shp \
+    --out pop_shp/zcta2010.shp
+
+2. Get the household and population variables('H001001' renamed to 'household',
+   'H010001' not renamed) for every block in Los Angeles (037), California
+   (06), add it to the 2010 block-level TIGER shapefile for LA, CA and output
+   it to 'block06037.shp'.
+python3 census.py \
+    --vars H001001:household,H010001 \
+    --geo state:06,county:037,tract,block \
+    --tiger tl_2020_06037_tabblock10.zip \
+    --out block06037.shp
+
+
+Resources:
+    Shapefiles: https://www2.census.gov/geo/tiger/TIGER2020PL/LAYER/
+    API guide: https://www.census.gov/content/dam/Census/data/developers/api-user-guide/api-guide.pdf
+    API examples: https://api.census.gov/data/2010/dec/sf1/examples.html
+    List of variables: https://api.census.gov/data/2010/dec/sf1/variables.html
+    Geo hierarchies: https://api.census.gov/data/2010/dec/sf1/geography.html
